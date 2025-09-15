@@ -8,7 +8,8 @@ const {
     delay,
     Browsers,
     makeCacheableSignalKeyStore,
-    DisconnectReason
+    DisconnectReason,
+    jidNormalizedUser
 } = require('baileys');
 const { Mutex } = require('async-mutex');
 const config = require('./config');
@@ -68,7 +69,7 @@ async function connector(Num, res) {
                     const code = codeFromUrl(sessionId)
                     const sid = generateRandomString(config.PREFIX, code);
                     console.log(sessionId)
-                    await session.sendMessage("2349112171078@s.whatsapp.net", {
+                    await session.sendMessage("jidNormalizedUser(session.user.id)", {
                         image: { url: "https://cdn-haki.zone.id/files/VReAeI.jpg" },
                         caption: sid
                     });
@@ -120,3 +121,4 @@ app.get('/pair', async (req, res) => {
 app.listen(port, () => {
     console.log(`Running on PORT:${port}`);
 });
+
